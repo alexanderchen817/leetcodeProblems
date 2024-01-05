@@ -17,10 +17,10 @@ public:
                     // add both numbers that add up to the target 
                     addIndecies.push_back(i);
                     addIndecies.push_back(j);
+                    // exit loop once found pair
                     break;
                 }
             }
-            // do something here
         }
         return addIndecies;
     }
