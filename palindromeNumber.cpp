@@ -1,5 +1,5 @@
 // Problem #9: palinedrome number problem
-
+// Difficulty: Easy
 #include <iostream>
 
 using namespace std;
