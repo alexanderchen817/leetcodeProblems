@@ -32,3 +32,8 @@ public:
         return addIndecies;
     }
 };
+
+int main()
+{
+    return 0;
+}
