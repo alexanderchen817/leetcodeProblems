@@ -22,7 +22,6 @@ bool isAlpha(char &x)
     return false;
 }
 
-
 bool isPalindrome(string s) 
 {
     bool isPalindrome = false;
@@ -35,17 +34,19 @@ bool isPalindrome(string s)
     }
 
     // convert all letters to lowercase
-    for (int i = 0; i < s.size(); i++) {
+    for (int i = 0; i < alpha_string.size(); i++) {
         alpha_string.at(i) = tolower(alpha_string.at(i));
     }
 
     // compare string backwards by concatentation
     string temp = "";
-    for (int i = s.size() - 1; i >= 0; i--) {
+    for (int i = alpha_string.size() - 1; i >= 0; i--) {
         temp += alpha_string.at(i);
     }
 
-    if (temp == s) {
+    cout << temp << endl;
+
+    if (temp == alpha_string) {
         isPalindrome = true;
     } else {
         // do nothing, the string is NOT a palindrome.
