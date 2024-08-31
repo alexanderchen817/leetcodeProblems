@@ -7,12 +7,15 @@ using namespace std;
 
 bool isPalindrome(string s) 
 {
-
     bool isPalindrome = false;
     // remove all non-alphanumeric characters
     for (int i = 0; i < s.size(); i++) {
-        // don't include a, and z
-        if (s.at(i) < 97 || s.at(i) > 123) {
+        // check for bounds of alphanumeric characters
+        // 122 is upper bound, 48 is lower bound, last two conditionals are ranges
+        if (s.at(i) > 122 || 
+            s.at(i) < 48 || (s.at(i) > 91 && s.at(i) < 97) 
+                        || (s.at(i) > 57 && s.at(i) < 65)) {
+            // erases and shortens string
             s.erase(i);
         } 
     }
@@ -22,10 +25,9 @@ bool isPalindrome(string s)
         s.at(i) = tolower(s.at(i));
     }
 
-    // compare 
+    // compare string backwards by concatentation
     string temp = "";
     for (int i = s.size() - 1; i >= 0; i--) {
-        // concatenate string backwards
         temp += s.at(i);
     }
 
@@ -34,6 +36,7 @@ bool isPalindrome(string s)
     } else {
         // do nothing, the string is NOT a palindrome.
     }
+
     // return
     return isPalindrome;
 }
@@ -42,8 +45,9 @@ int main()
     string test = "aabb";
     // should return false
     // cout << isPalindrome(test) << endl;
-    string test2 = "A man, a plan, a canal: Panama";
-    cout << isPalindrome(test2) << endl;
-
+    // string test2 = "A man, a plan, a canal: Panama";
+    // cout << isPalindrome(test2) << endl;
+    string test3 = "0P";
+    cout << isPalindrome(test3) << endl;
     return 0;
 }
