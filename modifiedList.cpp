@@ -1,4 +1,5 @@
 // problem #3217: Delete Nodes From Linked List Present in array
+// Difficulty: Medium
 #include <iostream>
 #include <vector>
 
