@@ -1,3 +1,4 @@
+// Question 1046: last stone weight
 #include <vector>
 #include <algorithm>
 #include <iostream>
