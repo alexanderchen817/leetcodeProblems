@@ -1,8 +1,9 @@
-// Question 1046: last stone weight
+// Question 1046: last stone weight using a max heap
 #include <vector>
 #include <algorithm>
 #include <iostream>
 using std::vector;
+using std::push_heap;
 using std::make_heap;
 using std::cout;
 using std::endl;
@@ -10,35 +11,42 @@ using std::endl;
 int lastStoneWeight(vector<int>& stones)
 {
     // convert stones vector into max heap 
-    int firstStone = 0; // x 
-    int secondStone = 0; // y
+    // make_heap makes a max heap
     make_heap(stones.begin(), stones.end());
-    int i = 0;
 
-    // iterate through stones till size is 1
-    while (stones.size() > 1) {
-        firstStone = stones.at(i);
-        secondStone = stones.at(i + 1);
-
-        if (firstStone != secondStone) {
-            // destroy x
-            stones.erase(stones.begin() + i);
-            // y has a new weight and is inserted
-            secondStone = secondStone - firstStone;
-            stones.push_back(secondStone);
-        } else {
-            // if the stones are equal, both get removed
-            stones.erase(stones.begin() + i);
-            stones.erase(stones.begin() + i + 1);
-        }
-        i++; // move to next biggest value in heap
+    // debugging 
+    for (int i = 0; i < stones.size(); i++) {
+        cout << stones.at(i) << " ";
     }
-    
-    if (stones.size() == 0) {
+    cout << endl;
+
+    while (stones.size() > 1) {
+        // the two heaviest stones will be popped off all the time
+        // pop heap puts the first element to the back of the vector
+        pop_heap(stones.begin(), stones.end());
+        // assign the weight at the end of the vector
+        int weightY = stones.at(stones.size() - 1);
+        stones.pop_back(); // remove the last element from the vector
+        
+        pop_heap(stones.begin(), stones.end());
+        int weightX = stones.at(stones.size() - 1);
+        stones.pop_back(); 
+
+        if (weightX != weightY) {
+            // append the new weight to the heap
+            stones.push_back(weightY - weightX);
+            push_heap(stones.begin(), stones.end());
+        }
+    }
+    // return the final value if it exists, otherwise return 0
+    if (!stones.empty()) {
+        // return the first element
+        return stones.at(0);
+    } else {
         return 0;
     }
-    return stones.at(0);
 }
+
 int main()
 {
     vector<int> stones = {2,7,4,1,8,1};
