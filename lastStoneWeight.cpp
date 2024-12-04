@@ -14,12 +14,6 @@ int lastStoneWeight(vector<int>& stones)
     // make_heap makes a max heap
     make_heap(stones.begin(), stones.end());
 
-    // debugging 
-    for (int i = 0; i < stones.size(); i++) {
-        cout << stones.at(i) << " ";
-    }
-    cout << endl;
-
     while (stones.size() > 1) {
         // the two heaviest stones will be popped off all the time
         // pop heap puts the first element to the back of the vector
